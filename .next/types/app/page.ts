@@ -1,4 +1,4 @@
-// File: C:\develop\next-example-app\src\app\page.tsx
+// File: C:\develop\react-component-materials\src\app\page.tsx
 import * as entry from '../../../src/app/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
