@@ -16,6 +16,7 @@
     "sonar": "sonar-scanner"
   },
   "dependencies": {
+    "@storybook/addon-actions": "^8.0.8",
     "@storybook/jest": "^0.2.3",
     "@storybook/testing-library": "^0.2.2",
     "@vitejs/plugin-react": "^4.2.1",

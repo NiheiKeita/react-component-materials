@@ -1,21 +1,30 @@
 
+import React from 'react';
 import { ButtonView } from '../../ButtonView';
 
-export const WeeklyAlenderView = (( props: any ) => {
+type Props = {
+  handleClick: () => void,
+}
+
+export const CalenderWeeklyView = React.memo<Props>(function CalenderWeeklyView({
+  handleClick
+},) {
   return (
     <div>
       <div className="flex justify-between">
-        <ButtonView onClick={props.clickEvent} text="前の月"/>
+        <ButtonView onClick={handleClick} text="前の月" />
         <p>カレンダー</p>
-        <ButtonView onClick={props.clickEvent} text="次の月"/>
+        <ButtonView onClick={handleClick} text="次の月" />
       </div>
+      <button onClick={handleClick} data-testid="buttonddd">ddddd</button>
       <div>
         <div>
           月火水木金土日
         </div>
-        <div>
+        <div data-testid="text">
           ◎バツとかとクリック処理
-        </div>  
+        </div>
+        <input data-testid="input" />
         <table className="w-full border border-black">
           <thead className="w-full bg-blue-800 text-white">
             <tr className='w-full'>
