@@ -2,6 +2,7 @@ import React from "react"
 import { CalenderDailyView } from "../CalenderDailyView"
 import { CalenderMonth } from "../types/CalenderMonth"
 import { format } from "date-fns"
+import { ButtonView } from '../../ButtonView';
 
 type Props = {
   handleClick: () => void,
@@ -12,27 +13,36 @@ export const CalenderMonthlyView = React.memo<Props>(function CalenderMonthlyVie
   handleClick,
   calender,
 },) {
-  const doClick = () => {
-    handleClick
+  const doClick = (day: Date) => {
+    console.log(format(day, "yyyy-MM-dd"))
+    handleClick()
   }
-  const dayOfWeeks = ["月", "火", "水", "木", "金", "土", "日"]
+  const handleBeforeClick = () => {
+    console.log("d")
+  }
+  const handleextClick = () => {
+    console.log("d")
+  }
+  const dayOfWeeks = ["日", "月", "火", "水", "木", "金", "土"]
   const emptydateNum: number = calender.days[0].getDay()
-  console.log(format(calender.days[0], "yyyy-MM-dd"))
-  console.log(calender.days[0].getDay())
   return (
     <div>
-      {/* {emptydateNum} */}
-      <div className="grid-cols-7 grid">
+      <div className="flex justify-between">
+        <ButtonView className="" onClick={handleBeforeClick} text="前の月" />
+        <p>{calender.month}月 カレンダー</p>
+        <ButtonView onClick={handleextClick} text="次の月" />
+      </div>
+      <div className="mt-5 grid grid-cols-7">
         {
           dayOfWeeks.map((dayOfWeek, index) => {
             return (
-              <div className="flex justify-center items-center" key={index}>{dayOfWeek}</div>
+              <div className="flex items-center justify-center bg-slate-400" key={index} >{dayOfWeek}</div>
             )
           })
         }
         {
-          [...Array(emptydateNum)].map(() => {
-            return (<div></div>)
+          [...Array(emptydateNum)].map((value, index) => {
+            return (<div key={index}></div>)
           })
         }
         {
