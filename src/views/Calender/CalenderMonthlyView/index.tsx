@@ -20,17 +20,17 @@ export const CalenderMonthlyView = React.memo<Props>(function CalenderMonthlyVie
   const handleBeforeClick = () => {
     console.log("d")
   }
-  const handleextClick = () => {
+  const handleNextClick = () => {
     console.log("d")
   }
   const dayOfWeeks = ["日", "月", "火", "水", "木", "金", "土"]
-  const emptydateNum: number = calender.days[0].getDay()
+  const emptyDteNum: number = calender.days[0].getDay()
   return (
     <div>
       <div className="flex justify-between">
         <ButtonView className="" onClick={handleBeforeClick} text="前の月" />
         <p>{calender.month}月 カレンダー</p>
-        <ButtonView onClick={handleextClick} text="次の月" />
+        <ButtonView onClick={handleNextClick} text="次の月" />
       </div>
       <div className="mt-5 grid grid-cols-7">
         {
@@ -41,7 +41,7 @@ export const CalenderMonthlyView = React.memo<Props>(function CalenderMonthlyVie
           })
         }
         {
-          [...Array(emptydateNum)].map((value, index) => {
+          [...Array(emptyDteNum)].map((value, index) => {
             return (<div key={index}></div>)
           })
         }
