@@ -3,6 +3,7 @@ import { expect } from '@storybook/jest';
 import { Meta, StoryObj } from '@storybook/react';
 import { userEvent, within } from '@storybook/testing-library';
 import { CalenderMonthlyView } from '.';
+import { eachDayOfInterval } from 'date-fns';
 
 const meta: Meta<typeof CalenderMonthlyView> = {
   title: 'views/Calender/CalenderMonthlyView',
@@ -12,18 +13,10 @@ const meta: Meta<typeof CalenderMonthlyView> = {
 export default meta
 
 type Story = StoryObj<typeof meta>
-
-const days = [
-  {
-    date: new Date("2024-02-05")
-  },
-  {
-    date: new Date("2024-02-05")
-  },
-]
+let dates = eachDayOfInterval({ start: new Date(2024, 5, 1), end: new Date(2024, 5, 31) })
 const calender = {
-  month: 2,
-  days: days,
+  month: 3,
+  days: dates,
 }
 
 export const Test: Story = {

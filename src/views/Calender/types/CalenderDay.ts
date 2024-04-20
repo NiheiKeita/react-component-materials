@@ -1,5 +1,5 @@
-export type CalendrDay = {
-    date:Date,
+export type CalenderDay = {
+    date: Date,
 }
 
 
