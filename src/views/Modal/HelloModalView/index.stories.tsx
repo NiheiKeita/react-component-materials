@@ -1,3 +1,4 @@
+import { expect } from '@storybook/jest';
 
 import { Meta, StoryObj } from '@storybook/react';
 import { fireEvent, within } from '@storybook/testing-library';
@@ -20,7 +21,10 @@ export const Default: Story = {
   },
   play: async ({ canvasElement }) => {
     const canvas = await within(canvasElement)
+    await expect(await canvas.queryByText('open')).toBeTruthy()
     await fireEvent.click(canvas.getByTestId('openButton'))
     canvas.getByText("hello")
+    await fireEvent.click(canvas.getByTestId('closeButton'))
+    await expect(await canvas.queryByText('hello')).toBeFalsy()
   },
 }
