@@ -1,45 +1,54 @@
 
 import React from 'react';
 import { ButtonView } from '../../ButtonView';
+import { CalenderMonth } from '../types/CalenderMonth';
+import { format } from 'date-fns';
+import { CalenderDailyView } from '../CalenderDailyView';
+
 
 type Props = {
   handleClick: () => void,
+  calender: CalenderMonth,
 }
 
 export const CalenderWeeklyView = React.memo<Props>(function CalenderWeeklyView({
-  handleClick
+  handleClick,
+  calender,
 },) {
+  const doClick = (day: Date) => {
+    console.log(format(day, "yyyy-MM-dd"))
+    handleClick()
+  }
+  const handleBeforeClick = () => {
+    console.log("d")
+  }
+  const handleextClick = () => {
+    console.log("d")
+  }
+  const dayOfWeeks = ["日", "月", "火", "水", "木", "金", "土"]
+  const emptydateNum: number = calender.days[0].getDay()
   return (
     <div>
       <div className="flex justify-between">
-        <ButtonView onClick={handleClick} text="前の月" />
-        <p>カレンダー</p>
-        <ButtonView onClick={handleClick} text="次の月" />
+        <ButtonView className="" onClick={handleBeforeClick} text="前の週" />
+        <p>週カレンダー</p>
+        <ButtonView onClick={handleextClick} text="次の週" />
       </div>
-      <button onClick={handleClick} data-testid="buttonddd">ddddd</button>
-      <div>
-        <div>
-          月火水木金土日
-        </div>
-        <div data-testid="text">
-          ◎バツとかとクリック処理
-        </div>
-        <input data-testid="input" />
-        <table className="w-full border border-black">
-          <thead className="w-full bg-blue-800 text-white">
-            <tr className='w-full'>
-              <th className="w-1/3 border border-black">グループ</th>
-              <th className="w-1/3 border border-black">名前</th>
-              <th className="w-1/3 border border-black">年齢</th>
-            </tr>
-          </thead>
-          <tbody className="bg-blue-300 text-black">
-            <td className="border border-black">www</td>
-            <td className="border border-black">eee</td>
-            <td className="border border-black">rname</td>
-          </tbody>
-        </table>
+      <div className="mt-5 grid grid-cols-7">
+        {
+          [...Array(7)].map((value, index) => {
+            return (<div className="flex items-center justify-center bg-slate-400" key={index} >{dayOfWeeks[(emptydateNum + index) % 7]}</div>)
+          })
+        }
+        {
+          calender.days.map((day, index) => {
+            return (
+              <CalenderDailyView key={index} day={day} handleClick={doClick} />
+            )
+          })
+        }
       </div>
     </div>
-  );
-});
+  )
+})
+

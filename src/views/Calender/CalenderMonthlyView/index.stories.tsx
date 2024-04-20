@@ -1,7 +1,6 @@
 import { action } from '@storybook/addon-actions';
-import { expect } from '@storybook/jest';
 import { Meta, StoryObj } from '@storybook/react';
-import { userEvent, within } from '@storybook/testing-library';
+import { within } from '@storybook/testing-library';
 import { CalenderMonthlyView } from '.';
 import { eachDayOfInterval } from 'date-fns';
 
@@ -19,28 +18,13 @@ const calender = {
   days: dates,
 }
 
-export const Test: Story = {
+export const Default: Story = {
   args: {
     handleClick: action('handleClick'),
     calender: calender,
   },
   play: async ({ canvasElement }) => {
-    const button = await within(canvasElement).findByTestId('button');
-    expect(button).toBeInTheDocument();
-    expect(within(canvasElement).queryByTestId('countText')?.innerHTML).toBe("0");
-    await userEvent.click(button);
-    expect(within(canvasElement).queryByTestId('countText')?.innerHTML).toBe("1");
-  },
-};
-
-
-export const HelloButton: Story = {
-  args: {
-    handleClick: action('handleClick'),
-    calender: calender,
-  },
-  play: async ({ canvasElement }) => {
-    const button = await within(canvasElement).findByTestId('button');
-    expect(button).toBeInTheDocument();
+    const canvas = await within(canvasElement)
+    canvas.getByText("05")
   },
 };
