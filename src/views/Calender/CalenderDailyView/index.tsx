@@ -1,10 +1,11 @@
-import React from "react"
 import { format } from "date-fns"
+import React from "react"
+import { CalenderDay } from "../types/CalenderDay"
 
 type Props = {
   // eslint-disable-next-line no-unused-vars
   handleClick: (day: Date) => void,
-  day: Date,
+  day: CalenderDay,
 }
 
 export const CalenderDailyView = React.memo<Props>(function CalenderDailyView({
@@ -12,8 +13,8 @@ export const CalenderDailyView = React.memo<Props>(function CalenderDailyView({
   day,
 },) {
   return (
-    <div className=" m-2 flex cursor-pointer items-center justify-center rounded-xl bg-pink-200 shadow-md" onClick={() => handleClick(day)}>
-      <p className="p-2 text-pink-600 ">{format(day, "dd")}</p>
+    <div className=" m-2 flex cursor-pointer items-center justify-center rounded-xl bg-pink-200 shadow-md" onClick={() => handleClick(day.date)}>
+      <p className="p-2 text-pink-600 ">{format(day.date, "dd")}</p>
     </div>
   )
 })

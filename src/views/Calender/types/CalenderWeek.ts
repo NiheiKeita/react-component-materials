@@ -1,7 +1,6 @@
 import { CalenderDay } from "./CalenderDay";
 
-export type CalenderMonth = {
-    month: number,
+export type CalenderWeek = {
     days: Array<CalenderDay>,
 }
 

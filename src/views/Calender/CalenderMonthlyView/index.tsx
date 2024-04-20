@@ -1,37 +1,28 @@
-import React from "react"
-import { CalenderDailyView } from "../CalenderDailyView"
-import { CalenderMonth } from "../types/CalenderMonth"
-import { format } from "date-fns"
-import { ButtonView } from '../../ButtonView';
+import React from "react";
+import { CalenderDailyView } from "../CalenderDailyView";
+import { CalenderHeaderView } from "../CalenderHeaderView";
+import { CalenderMonth } from "../types/CalenderMonth";
 
 type Props = {
-  handleClick: () => void,
+  handlePrevClick: () => void,
+  handleDayClick: () => void,
+  handleNextClick: () => void,
   calender: CalenderMonth,
 }
 
 export const CalenderMonthlyView = React.memo<Props>(function CalenderMonthlyView({
-  handleClick,
+  handlePrevClick,
+  handleDayClick,
+  handleNextClick,
   calender,
 },) {
-  const doClick = (day: Date) => {
-    console.log(format(day, "yyyy-MM-dd"))
-    handleClick()
-  }
-  const handleBeforeClick = () => {
-    console.log("d")
-  }
-  const handleNextClick = () => {
-    console.log("d")
-  }
   const dayOfWeeks = ["日", "月", "火", "水", "木", "金", "土"]
-  const emptyDteNum: number = calender.days[0].getDay()
+  const emptyDteNum: number = calender.days[0].date.getDay()
   return (
     <div>
-      <div className="flex justify-between">
-        <ButtonView className="" onClick={handleBeforeClick} text="前の月" />
-        <p>{calender.month}月 カレンダー</p>
-        <ButtonView onClick={handleNextClick} text="次の月" />
-      </div>
+      <CalenderHeaderView handlePrevClick={handlePrevClick} handleNextClick={handleNextClick}>
+        {calender.month}月 カレンダー
+      </CalenderHeaderView>
       <div className="mt-5 grid grid-cols-7">
         {
           dayOfWeeks.map((dayOfWeek, index) => {
@@ -48,7 +39,7 @@ export const CalenderMonthlyView = React.memo<Props>(function CalenderMonthlyVie
         {
           calender.days.map((day, index) => {
             return (
-              <CalenderDailyView key={index} day={day} handleClick={doClick} />
+              <CalenderDailyView key={index} day={day} handleClick={handleDayClick} />
             )
           })
         }
