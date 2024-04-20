@@ -17,7 +17,7 @@ export const HelloModalView = React.memo<Props>(function HelloModalView() {
   }
   return (
     <>
-      <div className="cursor-pointer" onClick={handleOpenClick} data-testid="openButton">open</div>
+      <div className="w-fit cursor-pointer" onClick={handleOpenClick} data-testid="openButton">open</div>
       <ModalView isOpen={isOpen} onClose={handleClose}>
         <div>hello</div>
       </ModalView>
