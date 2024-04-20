@@ -6,7 +6,7 @@ type Props = {
   children: React.ReactNode
 }
 
-export const BlackModalView = React.memo<Props>(function BlackModalView({
+export const ModalView = React.memo<Props>(function ModalView({
   isOpen, onClose, children
 }) {
   const handleClose = () => {

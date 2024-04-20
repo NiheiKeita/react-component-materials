@@ -2,12 +2,12 @@ import { expect } from '@storybook/jest';
 
 import { Meta, StoryObj } from '@storybook/react';
 import { fireEvent, waitFor, within } from '@storybook/testing-library';
-import { BlackModalView } from '.';
+import { ModalView } from '.';
 import { action } from '@storybook/addon-actions';
 
-const meta: Meta<typeof BlackModalView> = {
-  title: 'views/Modal/BlackModalView',
-  component: BlackModalView,
+const meta: Meta<typeof ModalView> = {
+  title: 'views/Modal/ModalView',
+  component: ModalView,
   tags: ['autodocs'],
 }
 export default meta
@@ -20,7 +20,7 @@ export const Default: Story = {
     onClose: action('onClose')
   },
   render: (args) => {
-    return <BlackModalView {...args} >Modal</BlackModalView>
+    return <ModalView {...args} >Modal</ModalView>
   },
   play: async ({ args, canvasElement }) => {
     const canvas = await within(canvasElement)
