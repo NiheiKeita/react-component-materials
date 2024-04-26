@@ -1,9 +1,10 @@
 import React, { useState } from "react"
+import { hslToRgb16 } from './hooks'
 
 type Props = {
   defaultColorHSL: number
   // eslint-disable-next-line no-unused-vars
-  handleColorSelect: (color: number) => void,
+  handleColorSelect: (colorCode: string) => void,
 }
 
 export const ColorSelectView = React.memo<Props>(function ColorSelectView({
@@ -12,13 +13,14 @@ export const ColorSelectView = React.memo<Props>(function ColorSelectView({
 }) {
   const [color, setColor] = useState(defaultColorHSL)
   const doChangeColorSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setColor(Number(e.target.value))
-    handleColorSelect(Number(e.target.value))
+    const colorHTL = Number(e.target.value)
+    setColor(colorHTL)
+    console.log(hslToRgb16(colorHTL))
+
+    handleColorSelect('#' + hslToRgb16(colorHTL))
   };
   return (
     <>
-      {/* <input type="range" min="0" max="100" onChange={doChangeColorSelect} className="appearance-none bg-gradient-to-r from-red-500 via-blue-500 to-yellow-200" /> */}
-      {/* <p>現在の値は{color}です</p> */}
       <input type="range" value={color} min="0" max="360"
         data-testid="color"
         onChange={doChangeColorSelect}
@@ -46,10 +48,3 @@ export const ColorSelectView = React.memo<Props>(function ColorSelectView({
     </>
   )
 })
-
-
-// .original-gradient {
-//   height: 200px;
-//   width: 90%;
-//   background-image: linear-gradient(90deg, rgba(255, 0, 0, 1), rgba(204, 255, 0, 1) 20%, rgba(0, 255, 102, 1) 40%, rgba(0, 102, 255, 1) 60%, rgba(204, 0, 255, 1) 80%, rgba(255, 0, 0, 1));
-// }
