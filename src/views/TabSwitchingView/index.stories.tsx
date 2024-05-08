@@ -1,5 +1,4 @@
 import { expect } from '@storybook/jest';
-
 import { Meta, StoryObj } from '@storybook/react';
 import { TabSwitchingView } from '.';
 import React from 'react';
