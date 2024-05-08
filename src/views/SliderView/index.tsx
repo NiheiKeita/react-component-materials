@@ -13,9 +13,9 @@ type Props = {
   reverse: boolean
 }
 
-export const HorizontalSliderView = React.memo<Props>(function HorizontalSliderView({
+export const SliderView = React.memo<Props>(function SliderView({
   sliders,
-  loop = true,
+  loop = false,
   slidesPerView = 1,
   centeredSlides = true,
   spaceBetween = 0,

@@ -1,12 +1,12 @@
 
 import { Meta, StoryObj } from '@storybook/react';
-import { HorizontalSliderView } from '.';
+import { SliderView } from '.';
 import React from 'react';
 import { within } from '@storybook/testing-library';
 
-const meta: Meta<typeof HorizontalSliderView> = {
-  title: 'views/Slider/HorizontalSliderView',
-  component: HorizontalSliderView,
+const meta: Meta<typeof SliderView> = {
+  title: 'views/SliderView',
+  component: SliderView,
   tags: ['autodocs'],
 }
 export default meta
@@ -44,3 +44,16 @@ export const Default: Story = {
   },
 };
 
+export const Space: Story = {
+  // NOTE:リープは最低４枚ないとエラーになって右側の画像が書けるので注意
+  args: {
+    // eslint-disable-next-line react/jsx-key
+    sliders: [<SampleSlider1 />, <SampleSlider2 />, <SampleSlider3 />, <SampleSlider3 />],
+    spaceBetween: 10,
+    slidesPerView: 1.5,
+    loop: true,
+  },
+  play: async ({ canvasElement }) => {
+    await within(canvasElement)
+  },
+};
