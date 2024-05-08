@@ -7,7 +7,7 @@ import React from 'react';
 
 
 const meta: Meta<typeof TabSwitchingView> = {
-  title: 'views/TabSwitchingView',
+  title: 'views/TabSwitchingView/context',
   component: TabSwitchingView,
   tags: ['autodocs'],
 }

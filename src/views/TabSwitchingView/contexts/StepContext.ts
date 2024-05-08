@@ -1,7 +1,7 @@
 
 import { useCallback, useState, createContext } from "react"
 
-type Step = 1 | 2 | 3
+export type Step = 1 | 2 | 3 | "Home" | 'Explore' | 'Notifications' | 'Messages'
 type StepContextType = {
     step: Step,
     // eslint-disable-next-line no-unused-vars
