@@ -1,4 +1,4 @@
-name: Deploy Storybook to GitHub Pages
+name: DeployStorybook
 
 on:
   push:
@@ -25,11 +25,8 @@ jobs:
       - name: Upload Documents
         uses: actions/upload-pages-artifact@v3
         with:
-          # 絶対パスを指定
           path: storybook-static
 
-  # Deploy the artifact to GitHub pages.
-  # This is a separate job so that only actions/deploy-pages has the necessary permissions.
   deploy:
     needs: build
     runs-on: ubuntu-latest
